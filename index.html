@@ -1,0 +1,223 @@
+<script>
+//Cracion de la Clase Telefono   
+    class Telefono {
+
+        constructor(peso, color, resPantalla, resCamara, ram) {
+            this.peso = peso;
+            this.color = color;
+            this.pantalla = resPantalla;
+            this.camara = resCamara;
+            this.ram = ram;
+        }
+
+        dameDatos() {
+            alert(`El celular tiene un peso de: ${this.peso}\n
+                     color:${this.color}\n
+                     Pantalla:${this.pantalla}\n
+                     Camara:${this.camara}\n
+                     Ram:${this.ram}`);
+        }
+        prender() {
+            alert("Puedo prender")
+        }
+        apagar() {
+            alert("Apagando");
+        }
+        tomarFoto() {
+            alert("Tomando foto")
+        }
+        reiniciar() {
+            alert("Reiniciando");
+        }
+        grabar() {
+            alert("Grabando");
+        }
+    }
+
+//Creando la clase celular Gama Baja que hereda de Telefono
+    class celGamaBaja extends Telefono {
+        constructor(peso, color, resPantalla, resCamara, ram) {
+            super(peso, color, resPantalla, resCamara, ram);
+        }
+
+        calentar() {
+            document.write("Estoy calentando demasiado " + this.peso + "<br>");
+        }
+    }
+
+//Creando la calse celular Gama alta que hereda de Telefono
+
+// grabar sueperlenta, recono facial, camara exta
+    class celGamaAlta extends Telefono{
+        constructor(peso, color, resPantalla, resCamara, ram,camaraExtra) {
+            super(peso, color, resPantalla, resCamara, ram);
+            this.cam=camaraExtra;
+        }
+        dameDatos(){
+            alert(`El celular tiene un peso de: ${this.peso}\n
+                     color:${this.color}\n
+                     Pantalla:${this.pantalla}\n
+                     Camara:${this.camara}\n
+                     Ram:${this.ram}\n
+                     Camara Extra: ${this.cam}`);
+            
+        }
+        grabarLento(){
+            alert("Estamos Grabando en Camara Lenta");
+        }
+        recoFacial(){
+            alert("Estamos Escaneado tu Rostro");
+        }
+    }
+
+//Creando un arreglo de objetos de celular Gama Alta 
+  const objAlta=[];
+  objAlta.push(new celGamaAlta("250 Gr", "verde", "2280px", "35px", "8Gb","120px"));
+  objAlta.push(new celGamaAlta("160 Gr", "Rojo", "2000px", "40px", "7Gb","100px"));
+
+
+//Creando un arreglo de objetos de Celular Gama Baja 
+    const objBaja = [];
+    objBaja.push(new celGamaBaja("250 Gr", "verde", "1180px", "20px", "3Gb"));
+    objBaja.push(new celGamaBaja("240 Gr", "Azul", "1180px", "20px", "2Gb"));
+    objBaja.push(new celGamaBaja("245 Gr", "Celeste", "1180px", "50px", "4Gb"));
+
+//Varibles para las opciones del menu
+    var salir;
+    var opcion;
+    var opc;
+
+    var option;
+    var opt;
+
+
+//Codigo del Main
+    do {
+        salir = parseInt(prompt(`Bienvenido a la tienda de Celulares\n
+            Elija una opcion del Menu:\n
+            1-Celulares de Gama Baja\n
+            2-Celulares top\n
+            3-Salir`));
+
+        switch (salir) {
+            case 1: do {
+                opcion = parseInt(prompt(`"Elija que celular desea para ver sus Caracteristicas\n
+                                   1-Celular Huawey\n
+                                   2-Celular Samsung\n
+                                   3-Celular Xiaomi\n
+                                   4-Salir`));
+                switch (opcion) {
+                    case 1: Caracteristicas(objBaja,0);
+                        break;
+                    case 2: Caracteristicas(objBaja,1);
+                        break;
+                    case 3:Caracteristicas(objBaja,2)
+                        break;
+
+                    case 4: alert("Gracias");
+                        break;
+                    default: alert("Opción Incorrecta");
+                }
+            } while (opcion != 4);
+                break;
+            case 2:do {
+                option = parseInt(prompt(`"Elija que celular Top desea para ver sus Caracteristicas\n
+                                   1-Celular Apple\n
+                                   2-Celular Samsung s20\n
+                                   3-Salir`));
+                switch (option) {
+                    case 1: CaracteristicasAltas(objAlta,0);
+                        break;
+                    case 2: CaracteristicasAltas(objAlta,1);
+                        break;
+                    case 3:alert("Gracias...");
+                        break;
+                    default: alert("Opción Incorrecta");
+                }
+            } while (option != 3);
+
+            case 3: alert("Gracias por usar la tienda");
+            break;
+            default: alert("Opcion Incorrecta");
+        }
+
+
+    } while (salir != 3);
+
+
+
+
+
+
+
+
+
+    //Funcion para que el usuario pruebe los celulares Gama Baja
+
+    function Caracteristicas(arr, num) {
+        do {
+            opc = parseInt(prompt(`Elija que desea del celular:\n
+                                 1-Muestrame los datos del celular\n
+                                 2-Prende\n
+                                 3-Apaga\n
+                                 4-Reiniciando\n
+                                 5-Toma una foto\n
+                                 6-Grabando\n
+                                 7-Salir`));
+            switch (opc) {
+                case 1: arr[num].dameDatos();
+                    break;
+                case 2: arr[num].prender();
+                    break;
+                case 3: arr[num].apagar();
+                    break;
+                case 4: arr[num].reiniciar();
+                    break;
+                case 5: arr[num].tomarFoto();
+                    break;
+                case 6: arr[num].grabar();
+                    break;
+                case 7: alert("Gracias..");
+                    break;
+                default: alert("Opcion Incorrecta");
+            }
+        } while (opc != 7);
+    }
+
+    function CaracteristicasAltas(arr, num) {
+        do {
+            opt = parseInt(prompt(`Elija que desea del celular:\n
+                                 1-Muestrame los datos del celular\n
+                                 2-Prende\n
+                                 3-Apaga\n
+                                 4-Reiniciando\n
+                                 5-Toma una foto\n
+                                 6-Grabando\n
+                                 7-Grabar Lento\n
+                                 8-Reconocimento Facial\n
+                                 9-Salir`));
+            switch (opt) {
+                case 1: arr[num].dameDatos();
+                    break;
+                case 2: arr[num].prender();
+                    break;
+                case 3: arr[num].apagar();
+                    break;
+                case 4: arr[num].reiniciar();
+                    break;
+                case 5: arr[num].tomarFoto();
+                    break;
+                case 6: arr[num].grabar();
+                    break;
+                case 7: arr[num].grabarLento();
+                    break;
+                case 8: arr[num].recoFacial();
+                break;
+                case 9: alert("Gracias....")
+                break;
+                default: alert("Opcion Incorrecta");
+            }
+        } while (opt != 9);
+    }
+
+</script>
